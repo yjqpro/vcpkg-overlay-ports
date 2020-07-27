@@ -24,6 +24,7 @@ vcpkg_from_github(
     PATCHES
         # openssl-version-override.patch
         fix-arm.patch
+        fix-build-config-hpp.patch
 )
 
 vcpkg_configure_cmake(

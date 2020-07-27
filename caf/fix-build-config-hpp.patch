@@ -1,0 +1,14 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 62610324..745008a9 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -258,6 +258,9 @@ configure_file("${PROJECT_SOURCE_DIR}/cmake/build_config.hpp.in"
+                "${CMAKE_BINARY_DIR}/caf/detail/build_config.hpp"
+                @ONLY)
+ 
++install(FILES "${CMAKE_CURRENT_BINARY_DIR}/caf/detail/build_config.hpp"
++        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/caf/detail)
++
+ # -- install testing DSL headers -----------------------------------------------
+ 
+ add_library(libcaf_test INTERFACE)
