@@ -1,0 +1,31 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 62610324..6ce156f8 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -194,6 +194,8 @@ if(CAF_ENABLE_UTILITY_TARGETS)
+   add_executable(caf-generate-enum-strings
+                  EXCLUDE_FROM_ALL
+                  cmake/caf-generate-enum-strings.cpp)
++  install(TARGETS caf-generate-enum-strings DESTINATION tools)
++
+   add_custom_target(consistency-check)
+   add_custom_target(update-enum-strings)
+   # adds a consistency check that verifies that `cpp_file` is still valid by
+@@ -205,7 +207,7 @@ if(CAF_ENABLE_UTILITY_TARGETS)
+     get_filename_component(output_dir "${output}" DIRECTORY)
+     file(MAKE_DIRECTORY "${output_dir}")
+     add_custom_command(OUTPUT "${output}"
+-                       COMMAND caf-generate-enum-strings "${input}" "${output}"
++                       COMMAND ${CAF_TOOL_PATH}caf-generate-enum-strings "${input}" "${output}"
+                        DEPENDS caf-generate-enum-strings "${input}")
+     get_filename_component(target_name "${input}" NAME_WE)
+     add_custom_target("${target_name}"
+@@ -218,7 +220,7 @@ if(CAF_ENABLE_UTILITY_TARGETS)
+     add_dependencies(consistency-check "${target_name}")
+     add_custom_target("${target_name}-update"
+                       COMMAND
+-                        caf-generate-enum-strings
++                        ${CAF_TOOL_PATH}caf-generate-enum-strings
+                         "${input}"
+                         "${file_under_test}"
+                        DEPENDS caf-generate-enum-strings "${input}")
